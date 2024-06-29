@@ -21,7 +21,7 @@ function App() {
 
   const fetchCases = async () => {
     try {
-      const response = await axios.get('http://localhost:5002/api/cases', {
+      const response = await axios.get('https://fastlegal-backend-heroku.herokuapp.com/api/cases', {
         headers: { 'x-auth-token': token },
       });
       setCases(response.data);
@@ -38,7 +38,7 @@ function App() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5002/api/cases', newCase, {
+      const response = await axios.post('https://fastlegal-backend-heroku.herokuapp.com/api/cases', newCase, {
         headers: { 'x-auth-token': token },
       });
       setCases([...cases, response.data]);
@@ -55,7 +55,7 @@ function App() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5002/api/cases/${id}`, {
+      await axios.delete(`https://fastlegal-backend-heroku.herokuapp.com/api/cases/${id}`, {
         headers: { 'x-auth-token': token },
       });
       setCases(cases.filter(caseItem => caseItem._id !== id));
@@ -72,7 +72,7 @@ function App() {
   const handleEditSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.put(`http://localhost:5002/api/cases/${editCase._id}`, editCase, {
+      const response = await axios.put(`https://fastlegal-backend-heroku.herokuapp.com/api/cases/${editCase._id}`, editCase, {
         headers: { 'x-auth-token': token },
       });
       setCases(cases.map(caseItem => caseItem._id === response.data._id ? response.data : caseItem));
@@ -85,7 +85,7 @@ function App() {
 
   const handleAuth = async (event) => {
     event.preventDefault();
-    const url = isLogin ? 'http://localhost:5002/login' : 'http://localhost:5002/register';
+    const url = isLogin ? 'https://fastlegal-backend-heroku.herokuapp.com/login' : 'https://fastlegal-backend-heroku.herokuapp.com/register';
     try {
       const response = await axios.post(url, { username, password });
       if (isLogin) {
